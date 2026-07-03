@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muhammad Umar — Full Stack Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+</head>
+<body>
+
+<!-- CURSORS -->
+<div class="cursor" id="cur"></div>
+<div class="cursor-ring" id="curR"></div>
+
+<!-- MOBILE NAV -->
+<div class="mob-nav" id="mobNav">
+  <button class="mob-close" id="mobClose" aria-label="Close menu">✕</button>
+  <a href="#about"       onclick="closeMob()">About</a>
+  <a href="#skills"      onclick="closeMob()">Skills</a>
+  <a href="#services"    onclick="closeMob()">Services</a>
+  <a href="#projects"    onclick="closeMob()">Projects</a>
+  <a href="#edu"         onclick="closeMob()">Journey</a>
+  <a href="#contact"     onclick="closeMob()">Contact</a>
+</div>
+
+<!-- NAVBAR -->
+<nav id="nav">
+  <div class="nav-logo">
+    <div class="nav-dot"></div>
+    MU<span style="color:var(--red)">.</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#edu">Journey</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-cta" onclick="scrollTo('#contact')">Hire Me</button>
+  <div class="hamburger" id="ham" onclick="openMob()" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ================================================
+     HERO
+================================================ -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Full Stack Developer</div>
+
+    <h1 class="hero-name">
+      <span class="first">Muhammad</span>
+      <span class="last" id="hl">
+        Umar
+        <span class="rfill" aria-hidden="true">Umar</span>
+      </span>
+    </h1>
+
+    <div class="hero-role">
+      <span>Software Engineer</span>
+      <div class="sep"></div>
+      <span>CS Student</span>
+      <div class="sep"></div>
+      <span>Problem Solver</span>
+    </div>
+
+    <p class="hero-desc">
+      I design and develop modern, responsive, and interactive web applications with beautiful user experiences.
+      Specialized in React, Node.js, C++, SQL, and Python.
+    </p>
+
+    <div class="hero-actions">
+      <button class="btn-primary" onclick="scrollTo('#projects')">
+        <i class="fas fa-arrow-right"></i> View Projects
+      </button>
+      <button class="btn-secondary" onclick="scrollTo('#contact')">
+        <i class="fas fa-envelope"></i> Let's Talk
+      </button>
+    </div>
+
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">20<span>+</span></div>
+        <div class="stat-label">Projects</div>
+      </div>
+      <div>
+        <div class="stat-num">10<span>+</span></div>
+        <div class="stat-label">Technologies</div>
+      </div>
+      <div>
+        <div class="stat-num">2<span>+</span></div>
+        <div class="stat-label">Yrs Exp.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROFILE / PHOTO COLUMN -->
+  <div class="profile-col">
+    <div class="photo-wrap">
+      <!-- offset shadow -->
+      <div class="photo-shadow"></div>
+
+      <!-- gradient border -->
+      <div class="photo-border">
+        <div class="photo-box" id="photoBox">
+
+          <!-- FIXED PROFILE IMAGE (set permanently via URL — no upload/change option) -->
+          <!-- To use your own photo: replace the src link below with your hosted image URL -->
+          <img class="user-img visible" id="userImg"
+               src="profile.jpg"
+               alt="Muhammad Umar — Profile Photo">
+
+          <!-- corner brackets inside box -->
+          <div class="brk brk-tl"></div>
+          <div class="brk brk-br"></div>
+        </div><!-- /photo-box -->
+      </div><!-- /photo-border -->
+
+      <!-- floating badges -->
+      <div class="fbadge fbadge-1"><i class="fas fa-circle" style="font-size:.5rem"></i>Available</div>
+      <div class="fbadge fbadge-2"><i class="fas fa-code" style="font-size:.6rem"></i>Open Source</div>
+    </div><!-- /photo-wrap -->
+  </div><!-- /profile-col -->
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="mtrack">
+    <span class="mitem"><i class="fab fa-html5"></i>HTML5</span>
+    <span class="mitem"><i class="fab fa-css3-alt"></i>CSS3</span>
+    <span class="mitem"><i class="fab fa-js"></i>JavaScript</span>
+    <span class="mitem"><i class="fab fa-react"></i>React</span>
+    <span class="mitem"><i class="fab fa-node-js"></i>Node.js</span>
+    <span class="mitem"><i class="fab fa-python"></i>Python</span>
+    <span class="mitem"><i class="fas fa-database"></i>SQL Server</span>
+    <span class="mitem"><i class="fas fa-code"></i>C++</span>
+    <span class="mitem"><i class="fas fa-code"></i>C#</span>
+    <span class="mitem"><i class="fab fa-github"></i>GitHub</span>
+    <span class="mitem"><i class="fab fa-figma"></i>Figma</span>
+    <span class="mitem"><i class="fas fa-fire"></i>GSAP</span>
+    <span class="mitem"><i class="fas fa-wind"></i>Tailwind</span>
+    <span class="mitem"><i class="fas fa-layer-group"></i>Bootstrap</span>
+    <!-- duplicate for seamless loop -->
+    <span class="mitem"><i class="fab fa-html5"></i>HTML5</span>
+    <span class="mitem"><i class="fab fa-css3-alt"></i>CSS3</span>
+    <span class="mitem"><i class="fab fa-js"></i>JavaScript</span>
+    <span class="mitem"><i class="fab fa-react"></i>React</span>
+    <span class="mitem"><i class="fab fa-node-js"></i>Node.js</span>
+    <span class="mitem"><i class="fab fa-python"></i>Python</span>
+    <span class="mitem"><i class="fas fa-database"></i>SQL Server</span>
+    <span class="mitem"><i class="fas fa-code"></i>C++</span>
+    <span class="mitem"><i class="fas fa-code"></i>C#</span>
+    <span class="mitem"><i class="fab fa-github"></i>GitHub</span>
+    <span class="mitem"><i class="fab fa-figma"></i>Figma</span>
+    <span class="mitem"><i class="fas fa-fire"></i>GSAP</span>
+    <span class="mitem"><i class="fas fa-wind"></i>Tailwind</span>
+    <span class="mitem"><i class="fas fa-layer-group"></i>Bootstrap</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="sec-label rv">Who I Am</div>
+  <h2 class="sec-title rv">About <span class="hl">Me</span></h2>
+  <div class="about-grid">
+    <div class="abt-text rv">
+      <p>I'm <strong>Muhammad Umar</strong>, a passionate Computer Science student and software developer who enjoys transforming ideas into real-world digital solutions. My journey started with curiosity about how things work and grew into a full-on obsession with building them.</p>
+      <p>My expertise spans front-end development, software engineering, database management, and desktop application development. I love building clean, responsive, high-performance applications — every pixel and every function matters.</p>
+      <p>I continuously learn new technologies and enjoy solving challenging programming problems while creating experiences that people genuinely enjoy using.</p>
+      <div class="abt-quote">
+        "Code with Purpose. Design with Passion. Build for the Future."
+        <cite>— Muhammad Umar</cite>
+      </div>
+    </div>
+    <div class="detail-list rv" style="transition-delay:.15s">
+      <div class="drow"><span class="dk">Status</span><span class="dv online">Available for work</span></div>
+      <div class="drow"><span class="dk">Role</span><span class="dv">Full Stack Developer</span></div>
+      <div class="drow"><span class="dk">Degree</span><span class="dv">Bachelor of CS</span></div>
+      <div class="drow"><span class="dk">Speciality</span><span class="dv">Web Apps</span></div>
+      <div class="drow"><span class="dk">Email</span><span class="dv">umaramir@18747gmail.com</span></div>
+      <div class="drow"><span class="dk">Phone</span><span class="dv">+92 306 1874711</span></div>
+      <div class="drow"><span class="dk">Location</span><span class="dv">Pakistan</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="sec-label rv">What I Know</div>
+  <h2 class="sec-title rv">Tech <span class="hollow">Skills</span></h2>
+  <div class="skill-grid rv">
+    <div class="skcat">
+      <h3><i class="fas fa-paint-brush"></i> Front-End</h3>
+      <div class="stags">
+        <span class="stag">HTML5</span><span class="stag">CSS3</span>
+        <span class="stag">JavaScript</span><span class="stag">React</span>
+        <span class="stag">Tailwind</span><span class="stag">Bootstrap</span>
+        <span class="stag">GSAP</span><span class="stag">Framer</span>
+        <span class="stag">Responsive</span><span class="stag">UI/UX</span>
+      </div>
+    </div>
+    <div class="skcat">
+      <h3><i class="fas fa-code"></i> Languages</h3>
+      <div class="stags">
+        <span class="stag">C++</span><span class="stag">C#</span>
+        <span class="stag">Python</span><span class="stag">JavaScript</span>
+        <span class="stag">TypeScript</span><span class="stag">SQL</span>
+      </div>
+    </div>
+    <div class="skcat">
+      <h3><i class="fas fa-server"></i> Backend & DB</h3>
+      <div class="stags">
+        <span class="stag">Node.js</span><span class="stag">Express</span>
+        <span class="stag">SQL Server</span><span class="stag">MySQL</span>
+        <span class="stag">Firebase</span><span class="stag">REST APIs</span>
+        <span class="stag">.NET</span>
+      </div>
+    </div>
+    <div class="skcat">
+      <h3><i class="fas fa-tools"></i> Tools</h3>
+      <div class="stags">
+        <span class="stag">Git</span><span class="stag">GitHub</span>
+        <span class="stag">VS Code</span><span class="stag">VS 2022</span>
+        <span class="stag">Figma</span><span class="stag">Canva</span>
+        <span class="stag">Photoshop</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="skill-bars rv" style="transition-delay:.2s">
+    <div>
+      <div class="sb-head"><span class="sb-name">HTML / CSS / JavaScript</span><span class="sb-pct">92%</span></div>
+      <div class="sb-track"><div class="sb-fill" data-w="92"></div></div>
+    </div>
+    <div>
+      <div class="sb-head"><span class="sb-name">React & Frontend Frameworks</span><span class="sb-pct">80%</span></div>
+      <div class="sb-track"><div class="sb-fill" data-w="80"></div></div>
+    </div>
+    <div>
+      <div class="sb-head"><span class="sb-name">C++ / OOP / Data Structures</span><span class="sb-pct">85%</span></div>
+      <div class="sb-track"><div class="sb-fill" data-w="85"></div></div>
+    </div>
+    <div>
+      <div class="sb-head"><span class="sb-name">SQL & Database Design</span><span class="sb-pct">78%</span></div>
+      <div class="sb-track"><div class="sb-fill" data-w="78"></div></div>
+    </div>
+    <div>
+      <div class="sb-head"><span class="sb-name">Node.js / Express</span><span class="sb-pct">50%</span></div>
+      <div class="sb-track"><div class="sb-fill" data-w="50"></div></div>
+    </div>
+    <div>
+      <div class="sb-head"><span class="sb-name">Python</span><span class="sb-pct">50%</span></div>
+      <div class="sb-track"><div class="sb-fill" data-w="50"></div></div>
+    </div>
+    <div>
+      <div class="sb-head"><span class="sb-name">PHP</span><span class="sb-pct">75%</span></div>
+      <div class="sb-track"><div class="sb-fill" data-w="75"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="sec-label rv">What I Do</div>
+  <h2 class="sec-title rv"><span class="hollow">Services</span> I Offer</h2>
+  <div class="svc-grid">
+    <div class="svc-card rv">
+      <div class="svc-num">01</div>
+      <i class="fas fa-globe svc-ico"></i>
+      <h4>Web Development</h4>
+      <p>Modern, responsive websites built with the latest web technologies. Pixel-perfect layouts that work on every screen and device.</p>
+    </div>
+    <div class="svc-card rv" style="transition-delay:.1s">
+      <div class="svc-num">02</div>
+      <i class="fas fa-laptop-code svc-ico"></i>
+      <h4>Frontend Development</h4>
+      <p>Interactive UIs with smooth animations, micro-interactions, and modern design systems using React and GSAP.</p>
+    </div>
+    <div class="svc-card rv" style="transition-delay:.2s">
+      <div class="svc-num">03</div>
+      <i class="fas fa-desktop svc-ico"></i>
+      <h4>Backend Development</h4>
+      <p>Powerful backend services using PHP, Node.js and Express — scalable, secure, and efficient for modern web applications.</p>
+    </div>
+    <div class="svc-card rv">
+      <div class="svc-num">04</div>
+      <i class="fas fa-database svc-ico"></i>
+      <h4>Database Design</h4>
+      <p>SQL database architecture, normalization, relationships, stored procedures, and query optimization for performance.</p>
+    </div>
+    <div class="svc-card rv" style="transition-delay:.1s">
+      <div class="svc-num">05</div>
+      <i class="fas fa-pen-ruler svc-ico"></i>
+      <h4>UI / UX Design</h4>
+      <p>Clean, user-friendly interface designs with Figma — focused on usability, accessibility, and visual storytelling.</p>
+    </div>
+    <div class="svc-card rv" style="transition-delay:.2s">
+      <div class="svc-num">06</div>
+      <i class="fas fa-brain svc-ico"></i>
+      <h4>Problem Solving</h4>
+      <p>Efficient algorithms, data structures (AVL trees, graphs, linked lists), and optimized solutions in C++ and Python.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="sec-label rv">What I've Built</div>
+  <h2 class="sec-title rv">Featured <span class="hl">Projects</span></h2>
+  <div class="proj-grid">
+    <div class="proj-card rv">
+      <div class="proj-num">Project 01</div>
+      <h4>Cinema Ticket Reservation</h4>
+      <p>A complete C++ console system with movie scheduling, seat layout, food ordering, and file-based data persistence. Uses OOP and data structures for efficient management.</p>
+      <div class="tech-list">
+        <span class="ttag">C++</span><span class="ttag">OOP</span>
+        <span class="ttag">File I/O</span><span class="ttag">Data Structures</span>
+      </div>
+      <a href="#" class="proj-link">View Details <i class="fas fa-arrow-right"></i></a>
+    </div>
+    <div class="proj-card rv" style="transition-delay:.12s">
+      <div class="proj-num">Project 02</div>
+      <h4>UNCUT Management System</h4>
+      <p>Full-featured C# + SQL Server desktop app for movies, customers, theatres, showtimes, and tickets. Complete CRUD with a professional Windows Forms UI.</p>
+      <div class="tech-list">
+        <span class="ttag">C#</span><span class="ttag">SQL Server</span>
+        <span class="ttag">Windows Forms</span><span class="ttag">.NET</span>
+      </div>
+      <a href="#" class="proj-link">View Details <i class="fas fa-arrow-right"></i></a>
+    </div>
+    <div class="proj-card rv">
+      <div class="proj-num">Project 03</div>
+      <h4>Student Record Management (AVL Tree)</h4>
+      <p>AVL Tree-based record system implementing efficient self-balancing BST for fast search, insertion, and deletion of student records with full traversal support.</p>
+      <div class="tech-list">
+        <span class="ttag">C++</span><span class="ttag">AVL Trees</span>
+        <span class="ttag">DSA</span><span class="ttag">Algorithms</span>
+      </div>
+      <a href="#" class="proj-link">View Details <i class="fas fa-arrow-right"></i></a>
+    </div>
+    <div class="proj-card rv" style="transition-delay:.12s">
+      <div class="proj-num">Project 05</div>
+      <h4>GreenChain Ecosystem</h4>
+      <p>Responsive digital dustbin, user put paste and get reward and get money in PKR with payment gateway and user authentication.</p>
+      <div class="tech-list">
+        <span class="ttag">HTML</span><span class="ttag">CSS</span>
+        <span class="ttag">JavaScript</span><span class="ttag">PHP</span>
+      </div>
+      <a href="#" class="proj-link">View Details <i class="fas fa-arrow-right"></i></a>
+    </div>
+    <div class="proj-card rv" style="transition-delay:.12s">
+      <div class="proj-num">Project 05</div>
+      <h4>Academic Portal</h4>
+      <p>Responsive academic portal with user authentication, course management, and grade tracking — built with modern web technologies.</p>
+      <div class="tech-list">
+        <span class="ttag">FYP</span><span class="ttag">Full backend development</span>
+        
+      </div>
+      <a href="#" class="proj-link">View Details <i class="fas fa-arrow-right"></i></a>
+    </div>
+    <div class="proj-card rv" style="transition-delay:.12s">
+      <div class="proj-num">Project 06</div>
+      <h4>Personal Portfolio Website</h4>
+      <p>Responsive personal portfolio with GSAP animations, dark mode, scroll reveals, custom cursor, and a marquee tech ticker — built in multiple evolving versions.</p>
+      <div class="tech-list">
+        <span class="ttag">HTML</span><span class="ttag">CSS</span>
+        <span class="ttag">JavaScript</span><span class="ttag">animations</span>
+      </div>
+      <a href="#" class="proj-link">View Details <i class="fas fa-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION + EXPERIENCE -->
+<section id="edu">
+  <div class="sec-label rv">My Journey</div>
+  <h2 class="sec-title rv">Education & <span class="hl">Experience</span></h2>
+  <div class="edu-grid">
+    <div class="rv">
+      <p class="tl-head">Education</p>
+      <div class="tl">
+        <div class="tl-item">
+          <div class="tl-date">2023 — Present</div>
+          <h4>Bachelor of Computer Science</h4>
+          <p>Pursuing undergraduate studies with focus on Software Engineering, Database Systems, Programming Languages, Web Development, and Data Structures & Algorithms.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">Core Subjects</div>
+          <h4>Academic Focus</h4>
+          <p>SE · Database Systems · DSA · Web Dev · OOP · Computer Networks · Operating Systems</p>
+        </div>
+      </div>
+    </div>
+    <div class="rv" style="transition-delay:.15s">
+      <p class="tl-head">Experience</p>
+      <div class="tl">
+        <div class="tl-item">
+          <div class="tl-date">2023 — Present</div>
+          <h4>Freelance Developer</h4>
+          <p>Building academic and personal software projects while continuously improving skills in modern web technologies. Delivering responsive websites and desktop applications.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">Ongoing</div>
+          <h4>Open Source Contributor</h4>
+          <p>Actively exploring open source projects, contributing to repositories, and sharing personal work on GitHub to build a professional developer presence.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="sec-label rv">What They Say</div>
+  <h2 class="sec-title rv">Client <span class="hollow">Reviews</span></h2>
+  <div class="testi-grid">
+    <div class="testi-card rv">
+      <div class="qmark">"</div>
+      <p>Professional, dedicated, and always delivers high-quality work on time. Working with Umar was a seamless experience from start to finish.</p>
+      <div class="testi-auth">— Satisfied Client</div>
+    </div>
+    <div class="testi-card rv" style="transition-delay:.12s">
+      <div class="qmark">"</div>
+      <p>Excellent communication and attention to detail. Umar understood exactly what we needed and executed with precision and creativity.</p>
+      <div class="testi-auth">— Happy Client</div>
+    </div>
+    <div class="testi-card rv" style="transition-delay:.24s">
+      <div class="qmark">"</div>
+      <p>Creates clean, responsive, and user-friendly applications. The final product exceeded our expectations — would absolutely recommend.</p>
+      <div class="testi-auth">— Valued Client</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-grid">
+    <div class="ci rv">
+      <div class="sec-label">Get In Touch</div>
+      <h2>Let's Build <span>Something</span> Amazing</h2>
+      <p>Have a project in mind or looking for a developer? I'm always excited to discuss new ideas, collaborations, and opportunities.</p>
+      <div class="ci-details">
+        <div class="ci-row"><i class="fas fa-envelope"></i> umaramir18747@gmail.com</div>
+        <div class="ci-row"><i class="fas fa-phone"></i> +92 306 1874711</div>
+        <div class="ci-row"><i class="fas fa-map-marker-alt"></i> Faisalabad, Punjab, Pakistan</div>
+      </div>
+      <div class="socials">
+        <a href="https://github.com/" target="_blank" rel="noopener" class="soc"><i class="fab fa-github"></i></a>
+        <a href="https://linkedin.com/" target="_blank" rel="noopener" class="soc"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://twitter.com/" target="_blank" rel="noopener" class="soc"><i class="fab fa-twitter"></i></a>
+        <a href="https://wa.me/923061874711" target="_blank" rel="noopener" class="soc"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+    <div class="cf rv" style="transition-delay:.2s">
+      <div class="frow">
+        <input type="text"  class="fi" placeholder="Full Name">
+        <input type="email" class="fi" placeholder="Email Address">
+      </div>
+      <input type="text" class="fi" placeholder="Subject">
+      <textarea class="fi" placeholder="Tell me about your project..."></textarea>
+      <button class="fsub" onclick="sendMsg(this)">
+        <i class="fas fa-paper-plane"></i> Send Message
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-logo"><span class="r">MU</span> / Muhammad Umar</div>
+  <div class="foot-copy">© 2026 Muhammad Umar. All Rights Reserved.</div>
+  <div class="foot-links">
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="foot-socials">
+    <a href="https://github.com/" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+    <a href="https://linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+    <a href="https://twitter.com/" target="_blank" rel="noopener" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+    <a href="https://wa.me/923061874711" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
