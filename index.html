@@ -1,494 +1,1353 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Muhammad Umar — Full Stack Developer</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-<link rel="stylesheet" href="style.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Muhammad Umar — Full Stack Developer & Software Engineer crafting high-performance, modern, and interactive digital experiences.">
+  <meta name="keywords" content="Muhammad Umar, Full Stack Developer, Software Engineer, Portfolio, React, Node.js, C++, Python, Web Development, Faisalabad, Pakistan">
+  <meta name="author" content="Muhammad Umar">
+  <meta name="theme-color" content="#08090d">
+
+  <!-- Open Graph / Social Meta -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Muhammad Umar — Full Stack Developer & Software Engineer">
+  <meta property="og:description" content="Explore the portfolio of Muhammad Umar. Building modern web applications, scalable backend systems, and clean digital experiences.">
+  <meta property="og:image" content="profile.jpg">
+  
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Muhammad Umar — Full Stack Developer">
+  <meta name="twitter:description" content="Portfolio of Muhammad Umar — Full Stack Developer & Software Engineer.">
+  <meta name="twitter:image" content="profile.jpg">
+
+  <title>Muhammad Umar — Full Stack Developer & Software Engineer</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Instant Theme Script to Prevent Flash -->
+  <script>
+    (function() {
+      const saved = localStorage.getItem('mu_theme');
+      if (saved) {
+        document.documentElement.setAttribute('data-theme', saved);
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+        document.documentElement.setAttribute('data-theme', 'light');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
 </head>
 <body>
 
-<!-- CURSORS -->
-<div class="cursor" id="cur"></div>
-<div class="cursor-ring" id="curR"></div>
+  <!-- BACKGROUND INTERACTIVE CANVAS -->
+  <canvas id="bgCanvas" class="bg-canvas" aria-hidden="true"></canvas>
 
-<!-- MOBILE NAV -->
-<div class="mob-nav" id="mobNav">
-  <button class="mob-close" id="mobClose" aria-label="Close menu">✕</button>
-  <a href="#about"       onclick="closeMob()">About</a>
-  <a href="#skills"      onclick="closeMob()">Skills</a>
-  <a href="#services"    onclick="closeMob()">Services</a>
-  <a href="#projects"    onclick="closeMob()">Projects</a>
-  <a href="#edu"         onclick="closeMob()">Journey</a>
-  <a href="#contact"     onclick="closeMob()">Contact</a>
-</div>
+  <!-- CUSTOM MOUSE CURSOR (Desktop only) -->
+  <div class="custom-cursor" id="customCursor" aria-hidden="true"></div>
+  <div class="custom-cursor-follower" id="cursorFollower" aria-hidden="true"></div>
 
-<!-- NAVBAR -->
-<nav id="nav">
-  <div class="nav-logo">
-    <div class="nav-dot"></div>
-    MU<span style="color:var(--red)">.</span>
-  </div>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#services">Services</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#edu">Journey</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  <button class="nav-cta" onclick="scrollTo('#contact')">Hire Me</button>
-  <div class="hamburger" id="ham" onclick="openMob()" aria-label="Open menu">
-    <span></span><span></span><span></span>
-  </div>
-</nav>
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div id="toastContainer" class="toast-container" role="status" aria-live="polite"></div>
 
-<!-- ================================================
-     HERO
-================================================ -->
-<section id="hero">
-  <div class="hero-left">
-    <div class="hero-eyebrow">Full Stack Developer</div>
-
-    <h1 class="hero-name">
-      <span class="first">Muhammad</span>
-      <span class="last" id="hl">
-        Umar
-        <span class="rfill" aria-hidden="true">Umar</span>
-      </span>
-    </h1>
-
-    <div class="hero-role">
-      <span>Software Engineer</span>
-      <div class="sep"></div>
-      <span>CS Student</span>
-      <div class="sep"></div>
-      <span>Problem Solver</span>
-    </div>
-
-    <p class="hero-desc">
-      I design and develop modern, responsive, and interactive web applications with beautiful user experiences.
-      Specialized in React, Node.js, C++, SQL, and Python.
-    </p>
-
-    <div class="hero-actions">
-      <button class="btn-primary" onclick="scrollTo('#projects')">
-        <i class="fas fa-arrow-right"></i> View Projects
-      </button>
-      <button class="btn-secondary" onclick="scrollTo('#contact')">
-        <i class="fas fa-envelope"></i> Let's Talk
+  <!-- MOBILE NAVIGATION DRAWER -->
+  <div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
+    <div class="mobile-drawer-header">
+      <div class="brand-logo">
+        <span class="logo-bracket">&lt;</span>
+        <span class="logo-text">MU</span>
+        <span class="logo-dot">.</span>
+        <span class="logo-bracket">/&gt;</span>
+      </div>
+      <button class="drawer-close-btn" id="drawerCloseBtn" aria-label="Close navigation menu">
+        <i class="fas fa-times"></i>
       </button>
     </div>
-
-    <div class="hero-stats">
-      <div>
-        <div class="stat-num">20<span>+</span></div>
-        <div class="stat-label">Projects</div>
-      </div>
-      <div>
-        <div class="stat-num">10<span>+</span></div>
-        <div class="stat-label">Technologies</div>
-      </div>
-      <div>
-        <div class="stat-num">2<span>+</span></div>
-        <div class="stat-label">Yrs Exp.</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- PROFILE / PHOTO COLUMN -->
-  <div class="profile-col">
-    <div class="photo-wrap">
-      <!-- offset shadow -->
-      <div class="photo-shadow"></div>
-
-      <!-- gradient border -->
-      <div class="photo-border">
-        <div class="photo-box" id="photoBox">
-
-          <!-- FIXED PROFILE IMAGE (set permanently via URL — no upload/change option) -->
-          <!-- To use your own photo: replace the src link below with your hosted image URL -->
-          <img class="user-img visible" id="userImg"
-               src="profile.jpg"
-               alt="Muhammad Umar — Profile Photo">
-
-          <!-- corner brackets inside box -->
-          <div class="brk brk-tl"></div>
-          <div class="brk brk-br"></div>
-        </div><!-- /photo-box -->
-      </div><!-- /photo-border -->
-
-      <!-- floating badges -->
-      <div class="fbadge fbadge-1"><i class="fas fa-circle" style="font-size:.5rem"></i>Available</div>
-      <div class="fbadge fbadge-2"><i class="fas fa-code" style="font-size:.6rem"></i>Open Source</div>
-    </div><!-- /photo-wrap -->
-  </div><!-- /profile-col -->
-</section>
-
-<!-- MARQUEE -->
-<div class="marquee-wrap">
-  <div class="mtrack">
-    <span class="mitem"><i class="fab fa-html5"></i>HTML5</span>
-    <span class="mitem"><i class="fab fa-css3-alt"></i>CSS3</span>
-    <span class="mitem"><i class="fab fa-js"></i>JavaScript</span>
-    <span class="mitem"><i class="fab fa-react"></i>React</span>
-    <span class="mitem"><i class="fab fa-node-js"></i>Node.js</span>
-    <span class="mitem"><i class="fab fa-python"></i>Python</span>
-    <span class="mitem"><i class="fas fa-database"></i>SQL Server</span>
-    <span class="mitem"><i class="fas fa-code"></i>C++</span>
-    <span class="mitem"><i class="fas fa-code"></i>C#</span>
-    <span class="mitem"><i class="fab fa-github"></i>GitHub</span>
-    <span class="mitem"><i class="fab fa-figma"></i>Figma</span>
-    <span class="mitem"><i class="fas fa-fire"></i>GSAP</span>
-    <span class="mitem"><i class="fas fa-wind"></i>Tailwind</span>
-    <span class="mitem"><i class="fas fa-layer-group"></i>Bootstrap</span>
-    <!-- duplicate for seamless loop -->
-    <span class="mitem"><i class="fab fa-html5"></i>HTML5</span>
-    <span class="mitem"><i class="fab fa-css3-alt"></i>CSS3</span>
-    <span class="mitem"><i class="fab fa-js"></i>JavaScript</span>
-    <span class="mitem"><i class="fab fa-react"></i>React</span>
-    <span class="mitem"><i class="fab fa-node-js"></i>Node.js</span>
-    <span class="mitem"><i class="fab fa-python"></i>Python</span>
-    <span class="mitem"><i class="fas fa-database"></i>SQL Server</span>
-    <span class="mitem"><i class="fas fa-code"></i>C++</span>
-    <span class="mitem"><i class="fas fa-code"></i>C#</span>
-    <span class="mitem"><i class="fab fa-github"></i>GitHub</span>
-    <span class="mitem"><i class="fab fa-figma"></i>Figma</span>
-    <span class="mitem"><i class="fas fa-fire"></i>GSAP</span>
-    <span class="mitem"><i class="fas fa-wind"></i>Tailwind</span>
-    <span class="mitem"><i class="fas fa-layer-group"></i>Bootstrap</span>
-  </div>
-</div>
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="sec-label rv">Who I Am</div>
-  <h2 class="sec-title rv">About <span class="hl">Me</span></h2>
-  <div class="about-grid">
-    <div class="abt-text rv">
-      <p>I'm <strong>Muhammad Umar</strong>, a passionate Computer Science student and software developer who enjoys transforming ideas into real-world digital solutions. My journey started with curiosity about how things work and grew into a full-on obsession with building them.</p>
-      <p>My expertise spans front-end development, software engineering, database management, and desktop application development. I love building clean, responsive, high-performance applications — every pixel and every function matters.</p>
-      <p>I continuously learn new technologies and enjoy solving challenging programming problems while creating experiences that people genuinely enjoy using.</p>
-      <div class="abt-quote">
-        "Code with Purpose. Design with Passion. Build for the Future."
-        <cite>— Muhammad Umar</cite>
-      </div>
-    </div>
-    <div class="detail-list rv" style="transition-delay:.15s">
-      <div class="drow"><span class="dk">Status</span><span class="dv online">Available for work</span></div>
-      <div class="drow"><span class="dk">Role</span><span class="dv">Full Stack Developer</span></div>
-      <div class="drow"><span class="dk">Degree</span><span class="dv">Bachelor of CS</span></div>
-      <div class="drow"><span class="dk">Speciality</span><span class="dv">Web Apps</span></div>
-      <div class="drow"><span class="dk">Email</span><span class="dv">umaramir@18747gmail.com</span></div>
-      <div class="drow"><span class="dk">Phone</span><span class="dv">+92 306 1874711</span></div>
-      <div class="drow"><span class="dk">Location</span><span class="dv">Pakistan</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- SKILLS -->
-<section id="skills">
-  <div class="sec-label rv">What I Know</div>
-  <h2 class="sec-title rv">Tech <span class="hollow">Skills</span></h2>
-  <div class="skill-grid rv">
-    <div class="skcat">
-      <h3><i class="fas fa-paint-brush"></i> Front-End</h3>
-      <div class="stags">
-        <span class="stag">HTML5</span><span class="stag">CSS3</span>
-        <span class="stag">JavaScript</span><span class="stag">React</span>
-        <span class="stag">Tailwind</span><span class="stag">Bootstrap</span>
-        <span class="stag">GSAP</span><span class="stag">Framer</span>
-        <span class="stag">Responsive</span><span class="stag">UI/UX</span>
-      </div>
-    </div>
-    <div class="skcat">
-      <h3><i class="fas fa-code"></i> Languages</h3>
-      <div class="stags">
-        <span class="stag">C++</span><span class="stag">C#</span>
-        <span class="stag">Python</span><span class="stag">JavaScript</span>
-        <span class="stag">TypeScript</span><span class="stag">SQL</span>
-      </div>
-    </div>
-    <div class="skcat">
-      <h3><i class="fas fa-server"></i> Backend & DB</h3>
-      <div class="stags">
-        <span class="stag">Node.js</span><span class="stag">Express</span>
-        <span class="stag">SQL Server</span><span class="stag">MySQL</span>
-        <span class="stag">Firebase</span><span class="stag">REST APIs</span>
-        <span class="stag">.NET</span>
-      </div>
-    </div>
-    <div class="skcat">
-      <h3><i class="fas fa-tools"></i> Tools</h3>
-      <div class="stags">
-        <span class="stag">Git</span><span class="stag">GitHub</span>
-        <span class="stag">VS Code</span><span class="stag">VS 2022</span>
-        <span class="stag">Figma</span><span class="stag">Canva</span>
-        <span class="stag">Photoshop</span>
+    <nav class="mobile-nav-links">
+      <a href="#hero" class="mob-link active" onclick="closeMobileMenu()"><i class="fas fa-home"></i> Home</a>
+      <a href="#about" class="mob-link" onclick="closeMobileMenu()"><i class="fas fa-user"></i> About</a>
+      <a href="#skills" class="mob-link" onclick="closeMobileMenu()"><i class="fas fa-code"></i> Skills</a>
+      <a href="#services" class="mob-link" onclick="closeMobileMenu()"><i class="fas fa-layer-group"></i> Services</a>
+      <a href="#projects" class="mob-link" onclick="closeMobileMenu()"><i class="fas fa-laptop-code"></i> Projects</a>
+      <a href="#journey" class="mob-link" onclick="closeMobileMenu()"><i class="fas fa-graduation-cap"></i> Journey</a>
+      <a href="#testimonials" class="mob-link" onclick="closeMobileMenu()"><i class="fas fa-comments"></i> Reviews</a>
+      <a href="#contact" class="mob-link" onclick="closeMobileMenu()"><i class="fas fa-envelope"></i> Contact</a>
+    </nav>
+    <div class="mobile-drawer-footer">
+      <button class="theme-toggle-btn mobile-theme-btn" id="mobileThemeToggle" aria-label="Toggle color theme">
+        <i class="fas fa-moon theme-icon-dark"></i>
+        <i class="fas fa-sun theme-icon-light"></i>
+        <span class="theme-label">Switch Theme</span>
+      </button>
+      <div class="mob-socials">
+        <a href="https://github.com/" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+        <a href="https://wa.me/923061874711" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
       </div>
     </div>
   </div>
+  <div class="drawer-backdrop" id="drawerBackdrop" onclick="closeMobileMenu()" aria-hidden="true"></div>
 
-  <div class="skill-bars rv" style="transition-delay:.2s">
-    <div>
-      <div class="sb-head"><span class="sb-name">HTML / CSS / JavaScript</span><span class="sb-pct">92%</span></div>
-      <div class="sb-track"><div class="sb-fill" data-w="92"></div></div>
-    </div>
-    <div>
-      <div class="sb-head"><span class="sb-name">React & Frontend Frameworks</span><span class="sb-pct">80%</span></div>
-      <div class="sb-track"><div class="sb-fill" data-w="80"></div></div>
-    </div>
-    <div>
-      <div class="sb-head"><span class="sb-name">C++ / OOP / Data Structures</span><span class="sb-pct">85%</span></div>
-      <div class="sb-track"><div class="sb-fill" data-w="85"></div></div>
-    </div>
-    <div>
-      <div class="sb-head"><span class="sb-name">SQL & Database Design</span><span class="sb-pct">78%</span></div>
-      <div class="sb-track"><div class="sb-fill" data-w="78"></div></div>
-    </div>
-    <div>
-      <div class="sb-head"><span class="sb-name">Node.js / Express</span><span class="sb-pct">50%</span></div>
-      <div class="sb-track"><div class="sb-fill" data-w="50"></div></div>
-    </div>
-    <div>
-      <div class="sb-head"><span class="sb-name">Python</span><span class="sb-pct">50%</span></div>
-      <div class="sb-track"><div class="sb-fill" data-w="50"></div></div>
-    </div>
-    <div>
-      <div class="sb-head"><span class="sb-name">PHP</span><span class="sb-pct">75%</span></div>
-      <div class="sb-track"><div class="sb-fill" data-w="75"></div></div>
-    </div>
-  </div>
-</section>
+  <!-- STICKY HEADER & NAVBAR -->
+  <header class="site-header" id="siteHeader">
+    <div class="header-container">
+      <a href="#hero" class="brand-logo" aria-label="Muhammad Umar - Home">
+        <span class="logo-bracket">&lt;</span>
+        <span class="logo-text">Portfolio</span>
+        <span class="logo-dot">.</span>
+        <span class="logo-bracket">/&gt;</span>
+        <span class="logo-status-dot" title="Available for work"></span>
+      </a>
 
-<!-- SERVICES -->
-<section id="services">
-  <div class="sec-label rv">What I Do</div>
-  <h2 class="sec-title rv"><span class="hollow">Services</span> I Offer</h2>
-  <div class="svc-grid">
-    <div class="svc-card rv">
-      <div class="svc-num">01</div>
-      <i class="fas fa-globe svc-ico"></i>
-      <h4>Web Development</h4>
-      <p>Modern, responsive websites built with the latest web technologies. Pixel-perfect layouts that work on every screen and device.</p>
-    </div>
-    <div class="svc-card rv" style="transition-delay:.1s">
-      <div class="svc-num">02</div>
-      <i class="fas fa-laptop-code svc-ico"></i>
-      <h4>Frontend Development</h4>
-      <p>Interactive UIs with smooth animations, micro-interactions, and modern design systems using React and GSAP.</p>
-    </div>
-    <div class="svc-card rv" style="transition-delay:.2s">
-      <div class="svc-num">03</div>
-      <i class="fas fa-desktop svc-ico"></i>
-      <h4>Backend Development</h4>
-      <p>Powerful backend services using PHP, Node.js and Express — scalable, secure, and efficient for modern web applications.</p>
-    </div>
-    <div class="svc-card rv">
-      <div class="svc-num">04</div>
-      <i class="fas fa-database svc-ico"></i>
-      <h4>Database Design</h4>
-      <p>SQL database architecture, normalization, relationships, stored procedures, and query optimization for performance.</p>
-    </div>
-    <div class="svc-card rv" style="transition-delay:.1s">
-      <div class="svc-num">05</div>
-      <i class="fas fa-pen-ruler svc-ico"></i>
-      <h4>UI / UX Design</h4>
-      <p>Clean, user-friendly interface designs with Figma — focused on usability, accessibility, and visual storytelling.</p>
-    </div>
-    <div class="svc-card rv" style="transition-delay:.2s">
-      <div class="svc-num">06</div>
-      <i class="fas fa-brain svc-ico"></i>
-      <h4>Problem Solving</h4>
-      <p>Efficient algorithms, data structures (AVL trees, graphs, linked lists), and optimized solutions in C++ and Python.</p>
-    </div>
-  </div>
-</section>
+      <!-- Desktop Nav Links -->
+      <nav class="desktop-nav" aria-label="Main Navigation">
+        <ul class="nav-menu">
+          <li><a href="#hero" class="nav-link active">Home</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#skills" class="nav-link">Skills</a></li>
+          <li><a href="#services" class="nav-link">Services</a></li>
+          <li><a href="#projects" class="nav-link">Projects</a></li>
+          <li><a href="#journey" class="nav-link">Journey</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
 
-<!-- PROJECTS -->
-<section id="projects">
-  <div class="sec-label rv">What I've Built</div>
-  <h2 class="sec-title rv">Featured <span class="hl">Projects</span></h2>
-  <div class="proj-grid">
-    <div class="proj-card rv">
-      <div class="proj-num">Project 01</div>
-      <h4>Cinema Ticket Reservation</h4>
-      <p>A complete C++ console system with movie scheduling, seat layout, food ordering, and file-based data persistence. Uses OOP and data structures for efficient management.</p>
-      <div class="tech-list">
-        <span class="ttag">C++</span><span class="ttag">OOP</span>
-        <span class="ttag">File I/O</span><span class="ttag">Data Structures</span>
+      <!-- Header Actions -->
+      <div class="header-actions">
+        <!-- Theme Toggle -->
+        <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle light and dark theme" title="Toggle theme">
+          <i class="fas fa-moon theme-icon-dark" aria-hidden="true"></i>
+          <i class="fas fa-sun theme-icon-light" aria-hidden="true"></i>
+        </button>
+
+        <!-- CTA Button -->
+        <a href="#contact" class="btn btn-sm btn-outline nav-cta-btn">
+          <span>Let's Talk</span>
+          <i class="fas fa-arrow-right"></i>
+        </a>
+
+        <!-- Hamburger Button -->
+        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open navigation menu" aria-expanded="false">
+          <span class="ham-line"></span>
+          <span class="ham-line"></span>
+          <span class="ham-line"></span>
+        </button>
       </div>
-      <a href="#" class="proj-link">View Details <i class="fas fa-arrow-right"></i></a>
     </div>
-    <div class="proj-card rv" style="transition-delay:.12s">
-      <div class="proj-num">Project 02</div>
-      <h4>UNCUT Management System</h4>
-      <p>Full-featured C# + SQL Server desktop app for movies, customers, theatres, showtimes, and tickets. Complete CRUD with a professional Windows Forms UI.</p>
-      <div class="tech-list">
-        <span class="ttag">C#</span><span class="ttag">SQL Server</span>
-        <span class="ttag">Windows Forms</span><span class="ttag">.NET</span>
-      </div>
-      <a href="#" class="proj-link">View Details <i class="fas fa-arrow-right"></i></a>
-    </div>
-    <div class="proj-card rv">
-      <div class="proj-num">Project 03</div>
-      <h4>Student Record Management (AVL Tree)</h4>
-      <p>AVL Tree-based record system implementing efficient self-balancing BST for fast search, insertion, and deletion of student records with full traversal support.</p>
-      <div class="tech-list">
-        <span class="ttag">C++</span><span class="ttag">AVL Trees</span>
-        <span class="ttag">DSA</span><span class="ttag">Algorithms</span>
-      </div>
-      <a href="#" class="proj-link">View Details <i class="fas fa-arrow-right"></i></a>
-    </div>
-    <div class="proj-card rv" style="transition-delay:.12s">
-      <div class="proj-num">Project 05</div>
-      <h4>GreenChain Ecosystem</h4>
-      <p>Responsive digital dustbin, user put paste and get reward and get money in PKR with payment gateway and user authentication.</p>
-      <div class="tech-list">
-        <span class="ttag">HTML</span><span class="ttag">CSS</span>
-        <span class="ttag">JavaScript</span><span class="ttag">PHP</span>
-      </div>
-      <a href="#" class="proj-link">View Details <i class="fas fa-arrow-right"></i></a>
-    </div>
-    <div class="proj-card rv" style="transition-delay:.12s">
-      <div class="proj-num">Project 05</div>
-      <h4>Academic Portal</h4>
-      <p>Responsive academic portal with user authentication, course management, and grade tracking — built with modern web technologies.</p>
-      <div class="tech-list">
-        <span class="ttag">FYP</span><span class="ttag">Full backend development</span>
+  </header>
+
+  <main>
+    <!-- ================================================
+         HERO SECTION
+    ================================================ -->
+    <section id="hero" class="hero-section" aria-label="Hero Introduction">
+      <div class="section-container hero-container">
         
-      </div>
-      <a href="#" class="proj-link">View Details <i class="fas fa-arrow-right"></i></a>
-    </div>
-    <div class="proj-card rv" style="transition-delay:.12s">
-      <div class="proj-num">Project 06</div>
-      <h4>Personal Portfolio Website</h4>
-      <p>Responsive personal portfolio with GSAP animations, dark mode, scroll reveals, custom cursor, and a marquee tech ticker — built in multiple evolving versions.</p>
-      <div class="tech-list">
-        <span class="ttag">HTML</span><span class="ttag">CSS</span>
-        <span class="ttag">JavaScript</span><span class="ttag">animations</span>
-      </div>
-      <a href="#" class="proj-link">View Details <i class="fas fa-arrow-right"></i></a>
-    </div>
-  </div>
-</section>
+        <!-- Left Content -->
+        <div class="hero-content reveal-on-scroll">
+          
+          <!-- Availability Badge -->
+          <div class="hero-badge">
+            <span class="radar-dot"></span>
+            <span class="badge-text">Available for new opportunities</span>
+          </div>
 
-<!-- EDUCATION + EXPERIENCE -->
-<section id="edu">
-  <div class="sec-label rv">My Journey</div>
-  <h2 class="sec-title rv">Education & <span class="hl">Experience</span></h2>
-  <div class="edu-grid">
-    <div class="rv">
-      <p class="tl-head">Education</p>
-      <div class="tl">
-        <div class="tl-item">
-          <div class="tl-date">2023 — Present</div>
-          <h4>Bachelor of Computer Science</h4>
-          <p>Pursuing undergraduate studies with focus on Software Engineering, Database Systems, Programming Languages, Web Development, and Data Structures & Algorithms.</p>
+          <h1 class="hero-title">
+            <span class="hero-greeting">Hi, I'm</span>
+            <span class="hero-name-gradient">Muhammad Umar</span>
+          </h1>
+
+          <!-- Interactive Terminal / Role -->
+          <div class="hero-role-wrapper">
+            <span class="role-prefix">&gt; </span>
+            <span class="role-text" id="typewriterText">Full Stack Developer</span>
+            <span class="terminal-cursor">_</span>
+          </div>
+
+          <p class="hero-description">
+            Software engineer and computer science student dedicated to building robust, high-performance web applications and desktop systems with clean architectures, intuitive user experiences, and modern design standards.
+          </p>
+
+          <!-- Action Buttons -->
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-primary">
+              <span>View Projects</span>
+              <i class="fas fa-code-branch"></i>
+            </a>
+            <a href="#contact" class="btn btn-secondary">
+              <span>Contact Me</span>
+              <i class="fas fa-paper-plane"></i>
+            </a>
+          </div>
+
+          <!-- Social Quick Links -->
+          <div class="hero-social-bar">
+            <span class="social-label">Find me on:</span>
+            <div class="social-icons">
+              <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub Profile" title="GitHub">
+                <i class="fab fa-github"></i>
+              </a>
+              <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn Profile" title="LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+              <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Twitter Profile" title="Twitter/X">
+                <i class="fab fa-x-twitter"></i>
+              </a>
+              <a href="https://wa.me/923061874711" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="WhatsApp Contact" title="WhatsApp">
+                <i class="fab fa-whatsapp"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Stats Grid -->
+          <div class="hero-stats-grid">
+            <div class="stat-card">
+              <div class="stat-number" data-target="20">0<span class="stat-plus">+</span></div>
+              <div class="stat-label">Projects Built</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number" data-target="12">0<span class="stat-plus">+</span></div>
+              <div class="stat-label">Tech Stacks</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number" data-target="2">0<span class="stat-plus">+</span></div>
+              <div class="stat-label">Years Experience</div>
+            </div>
+          </div>
         </div>
-        <div class="tl-item">
-          <div class="tl-date">Core Subjects</div>
-          <h4>Academic Focus</h4>
-          <p>SE · Database Systems · DSA · Web Dev · OOP · Computer Networks · Operating Systems</p>
+
+        <!-- Right Visual / Futuristic Profile Card -->
+        <div class="hero-visual reveal-on-scroll" style="transition-delay: 0.2s;">
+          <div class="hud-profile-card">
+            
+            <!-- Background Glow -->
+            <div class="hud-glow" aria-hidden="true"></div>
+
+            <!-- Tech Frame -->
+            <div class="hud-frame">
+              
+              <!-- Corner HUD Brackets -->
+              <div class="hud-corner top-left" aria-hidden="true"></div>
+              <div class="hud-corner top-right" aria-hidden="true"></div>
+              <div class="hud-corner bottom-left" aria-hidden="true"></div>
+              <div class="hud-corner bottom-right" aria-hidden="true"></div>
+
+              <!-- HUD Top Bar -->
+              <div class="hud-header">
+                <span class="hud-id">SYSTEM.DEV // UMAR.M</span>
+                <span class="hud-ping"><i class="fas fa-wifi"></i> LIVE</span>
+              </div>
+
+              <!-- Image Container -->
+              <div class="hud-image-box">
+                <img src="profile.jpg" alt="Muhammad Umar — Full Stack Developer & Software Engineer" class="hud-profile-img" loading="eager">
+                <div class="hud-scanline" aria-hidden="true"></div>
+                <div class="hud-overlay-grid" aria-hidden="true"></div>
+              </div>
+
+              <!-- HUD Bottom Info -->
+              <div class="hud-footer">
+                <div class="hud-tag"><i class="fas fa-terminal"></i> CS Undergrad</div>
+                <div class="hud-tag"><i class="fas fa-map-pin"></i> Pakistan</div>
+              </div>
+            </div>
+
+            <!-- Floating Badge 1 -->
+            <div class="floating-hud-badge badge-top-right">
+              <div class="badge-icon"><i class="fas fa-check-circle"></i></div>
+              <div class="badge-info">
+                <span class="badge-title">Full Stack</span>
+                <span class="badge-sub">React & Node.js</span>
+              </div>
+            </div>
+
+            <!-- Floating Badge 2 -->
+            <div class="floating-hud-badge badge-bottom-left">
+              <div class="badge-icon"><i class="fas fa-code"></i></div>
+              <div class="badge-info">
+                <span class="badge-title">Problem Solver</span>
+                <span class="badge-sub">C++ · OOP · DSA</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================================================
+         TECH MARQUEE TICKER
+    ================================================ -->
+    <div class="tech-marquee-section" aria-label="Technologies Marquee">
+      <div class="marquee-track" aria-hidden="true">
+        <div class="marquee-group">
+          <span class="marquee-item"><i class="fab fa-react"></i> React</span>
+          <span class="marquee-item"><i class="fab fa-node-js"></i> Node.js</span>
+          <span class="marquee-item"><i class="fab fa-js"></i> JavaScript ES6+</span>
+          <span class="marquee-item"><i class="fas fa-code"></i> C++</span>
+          <span class="marquee-item"><i class="fas fa-code"></i> C# / .NET</span>
+          <span class="marquee-item"><i class="fab fa-python"></i> Python</span>
+          <span class="marquee-item"><i class="fas fa-database"></i> SQL Server</span>
+          <span class="marquee-item"><i class="fas fa-database"></i> MySQL</span>
+          <span class="marquee-item"><i class="fab fa-php"></i> PHP</span>
+          <span class="marquee-item"><i class="fab fa-html5"></i> HTML5</span>
+          <span class="marquee-item"><i class="fab fa-css3-alt"></i> CSS3</span>
+          <span class="marquee-item"><i class="fab fa-git-alt"></i> Git & GitHub</span>
+          <span class="marquee-item"><i class="fab fa-figma"></i> Figma UI/UX</span>
+        </div>
+        <!-- Duplicate for continuous loop -->
+        <div class="marquee-group">
+          <span class="marquee-item"><i class="fab fa-react"></i> React</span>
+          <span class="marquee-item"><i class="fab fa-node-js"></i> Node.js</span>
+          <span class="marquee-item"><i class="fab fa-js"></i> JavaScript ES6+</span>
+          <span class="marquee-item"><i class="fas fa-code"></i> C++</span>
+          <span class="marquee-item"><i class="fas fa-code"></i> C# / .NET</span>
+          <span class="marquee-item"><i class="fab fa-python"></i> Python</span>
+          <span class="marquee-item"><i class="fas fa-database"></i> SQL Server</span>
+          <span class="marquee-item"><i class="fas fa-database"></i> MySQL</span>
+          <span class="marquee-item"><i class="fab fa-php"></i> PHP</span>
+          <span class="marquee-item"><i class="fab fa-html5"></i> HTML5</span>
+          <span class="marquee-item"><i class="fab fa-css3-alt"></i> CSS3</span>
+          <span class="marquee-item"><i class="fab fa-git-alt"></i> Git & GitHub</span>
+          <span class="marquee-item"><i class="fab fa-figma"></i> Figma UI/UX</span>
         </div>
       </div>
     </div>
-    <div class="rv" style="transition-delay:.15s">
-      <p class="tl-head">Experience</p>
-      <div class="tl">
-        <div class="tl-item">
-          <div class="tl-date">2023 — Present</div>
-          <h4>Freelance Developer</h4>
-          <p>Building academic and personal software projects while continuously improving skills in modern web technologies. Delivering responsive websites and desktop applications.</p>
+
+    <!-- ================================================
+         ABOUT SECTION
+    ================================================ -->
+    <section id="about" class="section-padding" aria-label="About Muhammad Umar">
+      <div class="section-container">
+        
+        <div class="section-header reveal-on-scroll">
+          <span class="section-eyebrow"><i class="fas fa-user"></i> Who I Am</span>
+          <h2 class="section-heading">Engineering Digital Solutions with <span class="gradient-text">Precision</span></h2>
+          <p class="section-subheading">Passionate about building scalable systems, high-speed interfaces, and elegant algorithms.</p>
         </div>
-        <div class="tl-item">
-          <div class="tl-date">Ongoing</div>
-          <h4>Open Source Contributor</h4>
-          <p>Actively exploring open source projects, contributing to repositories, and sharing personal work on GitHub to build a professional developer presence.</p>
+
+        <div class="about-grid">
+          
+          <!-- Bio Narrative -->
+          <div class="about-bio reveal-on-scroll">
+            <div class="glass-card bio-card">
+              <h3 class="bio-title">Hello, I'm <span class="highlight-text">Muhammad Umar</span></h3>
+              <p class="bio-text">
+                I am a passionate Computer Science student and software developer based in Pakistan. My enthusiasm for technology lies in transforming complex computational challenges into seamless, intuitive, and high-impact digital experiences.
+              </p>
+              <p class="bio-text">
+                My core expertise bridges modern front-end development, backend architecture, relational database engineering, and desktop software. Whether designing interactive user interfaces with modern web standards or engineering algorithmic data structures in C++, every detail is crafted with precision.
+              </p>
+              <p class="bio-text">
+                I consistently experiment with modern stacks, contribute to open-source initiatives, and aim to develop software that delivers tangible value to users and businesses worldwide.
+              </p>
+
+              <!-- Quote Box -->
+              <blockquote class="about-quote">
+                <i class="fas fa-quote-left quote-icon" aria-hidden="true"></i>
+                <p class="quote-content">"Code with purpose. Design with passion. Build for the future."</p>
+                <cite class="quote-author">— Muhammad Umar</cite>
+              </blockquote>
+            </div>
+          </div>
+
+          <!-- Quick Specifications Grid -->
+          <div class="about-specs reveal-on-scroll" style="transition-delay: 0.15s;">
+            <div class="glass-card specs-card">
+              <h3 class="specs-header"><i class="fas fa-sliders-h"></i> Profile Specifications</h3>
+              
+              <ul class="spec-list">
+                <li class="spec-item">
+                  <span class="spec-label"><i class="fas fa-circle-dot status-live"></i> Availability</span>
+                  <span class="spec-value active-badge">Open for Work</span>
+                </li>
+                <li class="spec-item">
+                  <span class="spec-label"><i class="fas fa-briefcase"></i> Primary Role</span>
+                  <span class="spec-value">Full Stack Developer</span>
+                </li>
+                <li class="spec-item">
+                  <span class="spec-label"><i class="fas fa-graduation-cap"></i> Academic Degree</span>
+                  <span class="spec-value">Bachelor of Computer Science</span>
+                </li>
+                <li class="spec-item">
+                  <span class="spec-label"><i class="fas fa-envelope"></i> Email</span>
+                  <div class="spec-interactive-value">
+                    <a href="mailto:umaramir18747@gmail.com" class="interactive-link">umaramir18747@gmail.com</a>
+                    <button class="copy-btn" onclick="copyToClipboard('umaramir18747@gmail.com', 'Email copied to clipboard!')" aria-label="Copy Email" title="Copy Email">
+                      <i class="fas fa-copy"></i>
+                    </button>
+                  </div>
+                </li>
+                <li class="spec-item">
+                  <span class="spec-label"><i class="fas fa-phone"></i> Phone</span>
+                  <div class="spec-interactive-value">
+                    <a href="tel:+923061874711" class="interactive-link">+92 306 1874711</a>
+                    <button class="copy-btn" onclick="copyToClipboard('+923061874711', 'Phone number copied!')" aria-label="Copy Phone" title="Copy Phone">
+                      <i class="fas fa-copy"></i>
+                    </button>
+                  </div>
+                </li>
+                <li class="spec-item">
+                  <span class="spec-label"><i class="fas fa-map-marker-alt"></i> Location</span>
+                  <span class="spec-value">Faisalabad, Punjab, Pakistan</span>
+                </li>
+              </ul>
+
+              <!-- Highlights Chips -->
+              <div class="about-highlights">
+                <span class="highlight-chip"><i class="fas fa-check"></i> High Cleanliness</span>
+                <span class="highlight-chip"><i class="fas fa-check"></i> OOP & DSA</span>
+                <span class="highlight-chip"><i class="fas fa-check"></i> Responsive Web</span>
+                <span class="highlight-chip"><i class="fas fa-check"></i> Relational SQL</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================================================
+         SKILLS & TECHNOLOGIES SECTION
+    ================================================ -->
+    <section id="skills" class="section-padding bg-alt" aria-label="Technical Skills">
+      <div class="section-container">
+        
+        <div class="section-header reveal-on-scroll">
+          <span class="section-eyebrow"><i class="fas fa-layer-group"></i> What I Know</span>
+          <h2 class="section-heading">Technical <span class="gradient-text">Proficiencies</span></h2>
+          <p class="section-subheading">A comprehensive overview of programming languages, frameworks, libraries, and development tools I work with.</p>
+        </div>
+
+        <!-- Skills Category Cards Grid -->
+        <div class="skills-categories-grid">
+          
+          <!-- Category 1: Frontend -->
+          <div class="skill-category-card glass-card reveal-on-scroll">
+            <div class="category-header">
+              <div class="category-icon-box"><i class="fas fa-laptop-code"></i></div>
+              <div>
+                <h3 class="category-title">Frontend Engineering</h3>
+                <span class="category-count">7 Technologies</span>
+              </div>
+            </div>
+            <div class="skill-tags-cloud">
+              <span class="skill-pill"><i class="fab fa-html5"></i> HTML5</span>
+              <span class="skill-pill"><i class="fab fa-css3-alt"></i> CSS3</span>
+              <span class="skill-pill"><i class="fab fa-js"></i> JavaScript (ES6+)</span>
+              <span class="skill-pill"><i class="fab fa-react"></i> React</span>
+              <span class="skill-pill"><i class="fas fa-mobile-screen"></i> Responsive UI</span>
+              <span class="skill-pill"><i class="fas fa-wind"></i> Tailwind CSS</span>
+              <span class="skill-pill"><i class="fab fa-bootstrap"></i> Bootstrap</span>
+            </div>
+          </div>
+
+          <!-- Category 2: Languages -->
+          <div class="skill-category-card glass-card reveal-on-scroll" style="transition-delay: 0.1s;">
+            <div class="category-header">
+              <div class="category-icon-box"><i class="fas fa-code"></i></div>
+              <div>
+                <h3 class="category-title">Languages & Core</h3>
+                <span class="category-count">6 Languages</span>
+              </div>
+            </div>
+            <div class="skill-tags-cloud">
+              <span class="skill-pill"><i class="fas fa-terminal"></i> C++</span>
+              <span class="skill-pill"><i class="fas fa-terminal"></i> C# (.NET)</span>
+              <span class="skill-pill"><i class="fab fa-python"></i> Python</span>
+              <span class="skill-pill"><i class="fab fa-js"></i> JavaScript</span>
+              <span class="skill-pill"><i class="fas fa-file-code"></i> TypeScript</span>
+              <span class="skill-pill"><i class="fas fa-database"></i> SQL</span>
+            </div>
+          </div>
+
+          <!-- Category 3: Backend & Database -->
+          <div class="skill-category-card glass-card reveal-on-scroll" style="transition-delay: 0.2s;">
+            <div class="category-header">
+              <div class="category-icon-box"><i class="fas fa-server"></i></div>
+              <div>
+                <h3 class="category-title">Backend & Databases</h3>
+                <span class="category-count">6 Stacks</span>
+              </div>
+            </div>
+            <div class="skill-tags-cloud">
+              <span class="skill-pill"><i class="fab fa-node-js"></i> Node.js</span>
+              <span class="skill-pill"><i class="fas fa-network-wired"></i> Express.js</span>
+              <span class="skill-pill"><i class="fab fa-php"></i> PHP</span>
+              <span class="skill-pill"><i class="fas fa-database"></i> SQL Server</span>
+              <span class="skill-pill"><i class="fas fa-database"></i> MySQL</span>
+              <span class="skill-pill"><i class="fas fa-fire"></i> Firebase</span>
+            </div>
+          </div>
+
+          <!-- Category 4: Tools & Systems -->
+          <div class="skill-category-card glass-card reveal-on-scroll" style="transition-delay: 0.3s;">
+            <div class="category-header">
+              <div class="category-icon-box"><i class="fas fa-toolbox"></i></div>
+              <div>
+                <h3 class="category-title">Tools & Architecture</h3>
+                <span class="category-count">7 Tools</span>
+              </div>
+            </div>
+            <div class="skill-tags-cloud">
+              <span class="skill-pill"><i class="fab fa-git-alt"></i> Git</span>
+              <span class="skill-pill"><i class="fab fa-github"></i> GitHub</span>
+              <span class="skill-pill"><i class="fas fa-code"></i> VS Code</span>
+              <span class="skill-pill"><i class="fas fa-desktop"></i> Visual Studio 2022</span>
+              <span class="skill-pill"><i class="fab fa-figma"></i> Figma</span>
+              <span class="skill-pill"><i class="fas fa-vial"></i> Postman</span>
+              <span class="skill-pill"><i class="fas fa-diagram-project"></i> OOP & DSA</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Visual Skill Proficiency Bars -->
+        <div class="skill-bars-container glass-card reveal-on-scroll" style="transition-delay: 0.2s;">
+          <h3 class="skill-bars-title"><i class="fas fa-chart-simple"></i> Core Competency Index</h3>
+          
+          <div class="skill-bars-grid">
+            
+            <div class="skill-bar-item">
+              <div class="bar-info">
+                <span class="bar-name">HTML5 / CSS3 / Modern JavaScript</span>
+                <span class="bar-percent">92%</span>
+              </div>
+              <div class="bar-track">
+                <div class="bar-progress" data-progress="92"></div>
+              </div>
+            </div>
+
+            <div class="skill-bar-item">
+              <div class="bar-info">
+                <span class="bar-name">C++ / Object-Oriented Programming / DSA</span>
+                <span class="bar-percent">85%</span>
+              </div>
+              <div class="bar-track">
+                <div class="bar-progress" data-progress="85"></div>
+              </div>
+            </div>
+
+            <div class="skill-bar-item">
+              <div class="bar-info">
+                <span class="bar-name">React & Component Engineering</span>
+                <span class="bar-percent">80%</span>
+              </div>
+              <div class="bar-track">
+                <div class="bar-progress" data-progress="80"></div>
+              </div>
+            </div>
+
+            <div class="skill-bar-item">
+              <div class="bar-info">
+                <span class="bar-name">SQL Server & Relational Database Design</span>
+                <span class="bar-percent">80%</span>
+              </div>
+              <div class="bar-track">
+                <div class="bar-progress" data-progress="80"></div>
+              </div>
+            </div>
+
+            <div class="skill-bar-item">
+              <div class="bar-info">
+                <span class="bar-name">PHP & Backend Scripting</span>
+                <span class="bar-percent">75%</span>
+              </div>
+              <div class="bar-track">
+                <div class="bar-progress" data-progress="75"></div>
+              </div>
+            </div>
+
+            <div class="skill-bar-item">
+              <div class="bar-info">
+                <span class="bar-name">Node.js & Express RESTful APIs</span>
+                <span class="bar-percent">70%</span>
+              </div>
+              <div class="bar-track">
+                <div class="bar-progress" data-progress="70"></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================================================
+         SERVICES SECTION
+    ================================================ -->
+    <section id="services" class="section-padding" aria-label="Services and Capabilities">
+      <div class="section-container">
+        
+        <div class="section-header reveal-on-scroll">
+          <span class="section-eyebrow"><i class="fas fa-cubes"></i> What I Do</span>
+          <h2 class="section-heading">Services & <span class="gradient-text">Capabilities</span></h2>
+          <p class="section-subheading">Delivering full-cycle engineering from database modeling to responsive frontend interfaces.</p>
+        </div>
+
+        <div class="services-grid">
+          
+          <!-- Service 1 -->
+          <div class="service-card glass-card reveal-on-scroll">
+            <div class="service-card-top">
+              <span class="service-num">01</span>
+              <div class="service-icon"><i class="fas fa-globe"></i></div>
+            </div>
+            <h3 class="service-title">Web Application Development</h3>
+            <p class="service-desc">
+              Building dynamic, standards-compliant, and high-performance web applications with modular code architectures and optimal responsiveness across all devices.
+            </p>
+            <ul class="service-features">
+              <li><i class="fas fa-check"></i> Responsive layouts</li>
+              <li><i class="fas fa-check"></i> Cross-browser support</li>
+              <li><i class="fas fa-check"></i> Modern semantics</li>
+            </ul>
+          </div>
+
+          <!-- Service 2 -->
+          <div class="service-card glass-card reveal-on-scroll" style="transition-delay: 0.1s;">
+            <div class="service-card-top">
+              <span class="service-num">02</span>
+              <div class="service-icon"><i class="fas fa-laptop-code"></i></div>
+            </div>
+            <h3 class="service-title">Frontend Engineering</h3>
+            <p class="service-desc">
+              Crafting interactive, smooth, and accessible user interfaces using React, modern CSS systems, micro-interactions, and state management techniques.
+            </p>
+            <ul class="service-features">
+              <li><i class="fas fa-check"></i> React ecosystem</li>
+              <li><i class="fas fa-check"></i> Accessible (a11y) UI</li>
+              <li><i class="fas fa-check"></i> Micro-animations</li>
+            </ul>
+          </div>
+
+          <!-- Service 3 -->
+          <div class="service-card glass-card reveal-on-scroll" style="transition-delay: 0.2s;">
+            <div class="service-card-top">
+              <span class="service-num">03</span>
+              <div class="service-icon"><i class="fas fa-server"></i></div>
+            </div>
+            <h3 class="service-title">Backend & API Development</h3>
+            <p class="service-desc">
+              Developing secure, robust, and maintainable backend endpoints using Node.js, Express, PHP, and .NET with structured authentication and error handling.
+            </p>
+            <ul class="service-features">
+              <li><i class="fas fa-check"></i> REST API endpoints</li>
+              <li><i class="fas fa-check"></i> Authentication / JWT</li>
+              <li><i class="fas fa-check"></i> Scalable logic</li>
+            </ul>
+          </div>
+
+          <!-- Service 4 -->
+          <div class="service-card glass-card reveal-on-scroll">
+            <div class="service-card-top">
+              <span class="service-num">04</span>
+              <div class="service-icon"><i class="fas fa-database"></i></div>
+            </div>
+            <h3 class="service-title">Database Design & Architecture</h3>
+            <p class="service-desc">
+              Engineering normalized relational database schemas, complex entity relationships, stored procedures, and query optimizations using SQL Server and MySQL.
+            </p>
+            <ul class="service-features">
+              <li><i class="fas fa-check"></i> ERD & Normalization</li>
+              <li><i class="fas fa-check"></i> Stored procedures</li>
+              <li><i class="fas fa-check"></i> Query optimization</li>
+            </ul>
+          </div>
+
+          <!-- Service 5 -->
+          <div class="service-card glass-card reveal-on-scroll" style="transition-delay: 0.1s;">
+            <div class="service-card-top">
+              <span class="service-num">05</span>
+              <div class="service-icon"><i class="fas fa-pen-ruler"></i></div>
+            </div>
+            <h3 class="service-title">UI / UX Interface Prototyping</h3>
+            <p class="service-desc">
+              Designing modern, clean user interfaces and interactive prototypes in Figma with strong visual hierarchy, typography, and clear design tokens.
+            </p>
+            <ul class="service-features">
+              <li><i class="fas fa-check"></i> High-fidelity wireframes</li>
+              <li><i class="fas fa-check"></i> Design token systems</li>
+              <li><i class="fas fa-check"></i> User flow validation</li>
+            </ul>
+          </div>
+
+          <!-- Service 6 -->
+          <div class="service-card glass-card reveal-on-scroll" style="transition-delay: 0.2s;">
+            <div class="service-card-top">
+              <span class="service-num">06</span>
+              <div class="service-icon"><i class="fas fa-brain"></i></div>
+            </div>
+            <h3 class="service-title">Algorithmic Problem Solving</h3>
+            <p class="service-desc">
+              Implementing efficient data structures (AVL Trees, Graphs, Hash Maps, Linked Lists) and computational algorithms in C++ and Python for optimal complexity.
+            </p>
+            <ul class="service-features">
+              <li><i class="fas fa-check"></i> Time/Space optimization</li>
+              <li><i class="fas fa-check"></i> Custom Tree structures</li>
+              <li><i class="fas fa-check"></i> Algorithm design</li>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================================================
+         PROJECTS SECTION
+    ================================================ -->
+    <section id="projects" class="section-padding bg-alt" aria-label="Featured Projects">
+      <div class="section-container">
+        
+        <div class="section-header reveal-on-scroll">
+          <span class="section-eyebrow"><i class="fas fa-code-branch"></i> What I've Built</span>
+          <h2 class="section-heading">Featured <span class="gradient-text">Projects</span></h2>
+          <p class="section-subheading">A selection of software engineering systems, full-stack applications, and academic projects.</p>
+        </div>
+
+        <!-- Project Filter Buttons -->
+        <div class="project-filter-container reveal-on-scroll">
+          <button class="filter-btn active" data-filter="all">All Projects</button>
+          <button class="filter-btn" data-filter="web">Web Apps</button>
+          <button class="filter-btn" data-filter="software">Desktop & Systems</button>
+          <button class="filter-btn" data-filter="dsa">DSA & Algorithms</button>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="projects-grid">
+          
+          <!-- Project 1: Cinema Ticket -->
+          <article class="project-card glass-card reveal-on-scroll" data-category="software dsa">
+            <div class="project-header">
+              <span class="project-category-tag"><i class="fas fa-terminal"></i> System Software</span>
+              <span class="project-index">01</span>
+            </div>
+            <h3 class="project-title">Cinema Ticket Reservation System</h3>
+            <p class="project-summary">
+              A comprehensive C++ console system featuring real-time movie scheduling, interactive graphical seat layouts, food concessions billing, and persistent file storage.
+            </p>
+            <div class="project-tech-stack">
+              <span class="tech-tag">C++</span>
+              <span class="tech-tag">OOP</span>
+              <span class="tech-tag">File I/O</span>
+              <span class="tech-tag">Data Structures</span>
+            </div>
+            <div class="project-actions">
+              <button class="btn btn-sm btn-outline view-details-btn" onclick="openProjectModal('cinema')">
+                <span>View Details</span>
+                <i class="fas fa-arrow-up-right-from-square"></i>
+              </button>
+              <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="project-github-btn" aria-label="View Cinema Ticket Reservation on GitHub" title="View Source on GitHub">
+                <i class="fab fa-github"></i>
+              </a>
+            </div>
+          </article>
+
+          <!-- Project 2: UNCUT Management -->
+          <article class="project-card glass-card reveal-on-scroll" data-category="software" style="transition-delay: 0.1s;">
+            <div class="project-header">
+              <span class="project-category-tag"><i class="fas fa-desktop"></i> Desktop Application</span>
+              <span class="project-index">02</span>
+            </div>
+            <h3 class="project-title">UNCUT Cinema Management System</h3>
+            <p class="project-summary">
+              Full-featured C# and SQL Server enterprise desktop application managing movies, customer profiles, theatres, showtimes, billing, and automated ticket printing.
+            </p>
+            <div class="project-tech-stack">
+              <span class="tech-tag">C#</span>
+              <span class="tech-tag">SQL Server</span>
+              <span class="tech-tag">Windows Forms</span>
+              <span class="tech-tag">.NET</span>
+            </div>
+            <div class="project-actions">
+              <button class="btn btn-sm btn-outline view-details-btn" onclick="openProjectModal('uncut')">
+                <span>View Details</span>
+                <i class="fas fa-arrow-up-right-from-square"></i>
+              </button>
+              <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="project-github-btn" aria-label="View UNCUT System on GitHub" title="View Source on GitHub">
+                <i class="fab fa-github"></i>
+              </a>
+            </div>
+          </article>
+
+          <!-- Project 3: Student Record AVL -->
+          <article class="project-card glass-card reveal-on-scroll" data-category="dsa" style="transition-delay: 0.2s;">
+            <div class="project-header">
+              <span class="project-category-tag"><i class="fas fa-network-wired"></i> Algorithmic Core</span>
+              <span class="project-index">03</span>
+            </div>
+            <h3 class="project-title">Student Record System (AVL Tree)</h3>
+            <p class="project-summary">
+              High-efficiency student record indexing system utilizing custom self-balancing AVL Binary Search Trees for O(log n) searches, insertions, balancing rotations, and deletions.
+            </p>
+            <div class="project-tech-stack">
+              <span class="tech-tag">C++</span>
+              <span class="tech-tag">AVL Trees</span>
+              <span class="tech-tag">DSA</span>
+              <span class="tech-tag">Algorithms</span>
+            </div>
+            <div class="project-actions">
+              <button class="btn btn-sm btn-outline view-details-btn" onclick="openProjectModal('avl')">
+                <span>View Details</span>
+                <i class="fas fa-arrow-up-right-from-square"></i>
+              </button>
+              <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="project-github-btn" aria-label="View AVL Record System on GitHub" title="View Source on GitHub">
+                <i class="fab fa-github"></i>
+              </a>
+            </div>
+          </article>
+
+          <!-- Project 4: GreenChain -->
+          <article class="project-card glass-card reveal-on-scroll" data-category="web">
+            <div class="project-header">
+              <span class="project-category-tag"><i class="fas fa-leaf"></i> Full-Stack Web App</span>
+              <span class="project-index">04</span>
+            </div>
+            <h3 class="project-title">GreenChain Smart Ecosystem</h3>
+            <p class="project-summary">
+              Smart digital waste management & incentive platform. Users register recyclable deposits and earn digital currency reward points with PKR payment gateway integration and authentication.
+            </p>
+            <div class="project-tech-stack">
+              <span class="tech-tag">HTML5/CSS3</span>
+              <span class="tech-tag">JavaScript</span>
+              <span class="tech-tag">PHP</span>
+              <span class="tech-tag">MySQL</span>
+            </div>
+            <div class="project-actions">
+              <button class="btn btn-sm btn-outline view-details-btn" onclick="openProjectModal('greenchain')">
+                <span>View Details</span>
+                <i class="fas fa-arrow-up-right-from-square"></i>
+              </button>
+              <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="project-github-btn" aria-label="View GreenChain on GitHub" title="View Source on GitHub">
+                <i class="fab fa-github"></i>
+              </a>
+            </div>
+          </article>
+
+          <!-- Project 5: Academic Portal -->
+          <article class="project-card glass-card reveal-on-scroll" data-category="web" style="transition-delay: 0.1s;">
+            <div class="project-header">
+              <span class="project-category-tag"><i class="fas fa-graduation-cap"></i> Enterprise Academic Suite</span>
+              <span class="project-index">05</span>
+            </div>
+            <h3 class="project-title">Academic Management Portal</h3>
+            <p class="project-summary">
+              Full-featured academic and final year portal with role-based access control (Students, Instructors, Admin), course registrations, grading analytics, and curriculum tracking.
+            </p>
+            <div class="project-tech-stack">
+              <span class="tech-tag">Full-Stack</span>
+              <span class="tech-tag">PHP / Node</span>
+              <span class="tech-tag">SQL DB</span>
+              <span class="tech-tag">Auth Security</span>
+            </div>
+            <div class="project-actions">
+              <button class="btn btn-sm btn-outline view-details-btn" onclick="openProjectModal('academic')">
+                <span>View Details</span>
+                <i class="fas fa-arrow-up-right-from-square"></i>
+              </button>
+              <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="project-github-btn" aria-label="View Academic Portal on GitHub" title="View Source on GitHub">
+                <i class="fab fa-github"></i>
+              </a>
+            </div>
+          </article>
+
+          <!-- Project 6: Developer Portfolio -->
+          <article class="project-card glass-card reveal-on-scroll" data-category="web" style="transition-delay: 0.2s;">
+            <div class="project-header">
+              <span class="project-category-tag"><i class="fas fa-palette"></i> Modern UI/UX</span>
+              <span class="project-index">06</span>
+            </div>
+            <h3 class="project-title">Personal Developer Portfolio</h3>
+            <p class="project-summary">
+              High-performance, futuristic portfolio with dual Dark/Light mode engine, custom interactive background canvas, accessible component architecture, and fluid responsiveness.
+            </p>
+            <div class="project-tech-stack">
+              <span class="tech-tag">HTML5</span>
+              <span class="tech-tag">CSS3 Variables</span>
+              <span class="tech-tag">Vanilla JS</span>
+              <span class="tech-tag">Canvas API</span>
+            </div>
+            <div class="project-actions">
+              <button class="btn btn-sm btn-outline view-details-btn" onclick="openProjectModal('portfolio')">
+                <span>View Details</span>
+                <i class="fas fa-arrow-up-right-from-square"></i>
+              </button>
+              <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="project-github-btn" aria-label="View Portfolio on GitHub" title="View Source on GitHub">
+                <i class="fab fa-github"></i>
+              </a>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================================================
+         JOURNEY (EDUCATION & EXPERIENCE) SECTION
+    ================================================ -->
+    <section id="journey" class="section-padding" aria-label="Education and Experience">
+      <div class="section-container">
+        
+        <div class="section-header reveal-on-scroll">
+          <span class="section-eyebrow"><i class="fas fa-route"></i> Career Timeline</span>
+          <h2 class="section-heading">Education & <span class="gradient-text">Experience</span></h2>
+          <p class="section-subheading">My academic foundation and ongoing professional path in software engineering.</p>
+        </div>
+
+        <div class="journey-grid">
+          
+          <!-- Column 1: Education -->
+          <div class="journey-column reveal-on-scroll">
+            <div class="journey-column-header">
+              <div class="journey-icon-wrap"><i class="fas fa-graduation-cap"></i></div>
+              <h3 class="journey-column-title">Education</h3>
+            </div>
+
+            <div class="timeline-tree">
+              
+              <div class="timeline-card glass-card">
+                <div class="timeline-badge"><i class="fas fa-university"></i></div>
+                <div class="timeline-date"><i class="far fa-calendar-alt"></i> 2023 — Present</div>
+                <h4 class="timeline-title">Bachelor of Computer Science</h4>
+                <div class="timeline-sub">Undergraduate Program</div>
+                <p class="timeline-desc">
+                  Pursuing undergraduate studies with strong academic immersion in Software Engineering methodologies, Relational Database Management Systems, Data Structures & Algorithms, and Distributed Web Architectures.
+                </p>
+              </div>
+
+              <div class="timeline-card glass-card">
+                <div class="timeline-badge"><i class="fas fa-book-bookmark"></i></div>
+                <div class="timeline-date"><i class="far fa-calendar-alt"></i> Core Academic Disciplines</div>
+                <h4 class="timeline-title">Key Academic Coursework</h4>
+                <div class="timeline-sub">Computer Science Curriculum</div>
+                <div class="course-tags">
+                  <span class="course-pill">Data Structures & Algorithms</span>
+                  <span class="course-pill">OOP in C++</span>
+                  <span class="course-pill">Database Systems</span>
+                  <span class="course-pill">Software Engineering</span>
+                  <span class="course-pill">Web Technologies</span>
+                  <span class="course-pill">Operating Systems</span>
+                  <span class="course-pill">Computer Networks</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Column 2: Experience -->
+          <div class="journey-column reveal-on-scroll" style="transition-delay: 0.15s;">
+            <div class="journey-column-header">
+              <div class="journey-icon-wrap"><i class="fas fa-briefcase"></i></div>
+              <h3 class="journey-column-title">Experience</h3>
+            </div>
+
+            <div class="timeline-tree">
+              
+              <div class="timeline-card glass-card">
+                <div class="timeline-badge"><i class="fas fa-code"></i></div>
+                <div class="timeline-date"><i class="far fa-calendar-alt"></i> 2023 — Present</div>
+                <h4 class="timeline-title">Freelance Software Developer</h4>
+                <div class="timeline-sub">Independent Client Solutions</div>
+                <p class="timeline-desc">
+                  Designing and delivering custom web applications, desktop software systems, and database utilities for clients and academic institutions. Specialized in converting functional client requirements into performant code.
+                </p>
+              </div>
+
+              <div class="timeline-card glass-card">
+                <div class="timeline-badge"><i class="fab fa-github-alt"></i></div>
+                <div class="timeline-date"><i class="far fa-calendar-alt"></i> Continuous</div>
+                <h4 class="timeline-title">Open Source Contributor & Builder</h4>
+                <div class="timeline-sub">Developer Community</div>
+                <p class="timeline-desc">
+                  Actively engineering personal developer tools, contributing to open-source code repositories, and sharing modular templates to foster collaborative software engineering and clean code practices.
+                </p>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================================================
+         CERTIFICATIONS & ACHIEVEMENTS SECTION
+    ================================================ -->
+    <section id="certifications" class="section-padding bg-alt" aria-label="Certifications and Milestones">
+      <div class="section-container">
+        
+        <div class="section-header reveal-on-scroll">
+          <span class="section-eyebrow"><i class="fas fa-award"></i> Recognition</span>
+          <h2 class="section-heading">Certifications & <span class="gradient-text">Milestones</span></h2>
+          <p class="section-subheading">Validated achievements and continuous engineering learning pathways.</p>
+        </div>
+
+        <div class="certs-grid">
+          
+          <div class="cert-card glass-card reveal-on-scroll">
+            <div class="cert-icon-box"><i class="fas fa-certificate"></i></div>
+            <div class="cert-body">
+              <span class="cert-issuer">Software Development</span>
+              <h3 class="cert-title">Full Stack Web Engineering</h3>
+              <p class="cert-desc">Demonstrated competency in full-stack web architecture, modern JavaScript (ES6+), React component ecosystems, and RESTful API integrations.</p>
+            </div>
+          </div>
+
+          <div class="cert-card glass-card reveal-on-scroll" style="transition-delay: 0.1s;">
+            <div class="cert-icon-box"><i class="fas fa-medal"></i></div>
+            <div class="cert-body">
+              <span class="cert-issuer">Algorithm Proficiency</span>
+              <h3 class="cert-title">Data Structures & C++ Algorithms</h3>
+              <p class="cert-desc">Mastery in self-balancing trees (AVL), dynamic programming, algorithmic complexity optimization, and memory-safe pointers.</p>
+            </div>
+          </div>
+
+          <div class="cert-card glass-card reveal-on-scroll" style="transition-delay: 0.2s;">
+            <div class="cert-icon-box"><i class="fas fa-database"></i></div>
+            <div class="cert-body">
+              <span class="cert-issuer">Database Engineering</span>
+              <h3 class="cert-title">Relational Database & SQL Modeling</h3>
+              <p class="cert-desc">Expertise in 3NF normalization, transactional integrity, stored procedures, indexing strategies, and multi-table joins.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================================================
+         TESTIMONIALS SECTION
+    ================================================ -->
+    <section id="testimonials" class="section-padding" aria-label="Client Testimonials">
+      <div class="section-container">
+        
+        <div class="section-header reveal-on-scroll">
+          <span class="section-eyebrow"><i class="fas fa-comments"></i> Endorsements</span>
+          <h2 class="section-heading">What People <span class="gradient-text">Say</span></h2>
+          <p class="section-subheading">Feedback and reviews from collaborative software projects.</p>
+        </div>
+
+        <div class="testimonials-grid">
+          
+          <div class="testimonial-card glass-card reveal-on-scroll">
+            <div class="testi-rating" aria-label="5 stars rating">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+            <p class="testi-text">
+              "Professional, dedicated, and always delivers high-quality work on time. Working with Umar on our software project was a seamless and productive experience from start to finish."
+            </p>
+            <div class="testi-author-info">
+              <div class="author-avatar"><i class="fas fa-user"></i></div>
+              <div>
+                <h4 class="author-name">Satisfied Client</h4>
+                <span class="author-title">Web Application Project</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card glass-card reveal-on-scroll" style="transition-delay: 0.12s;">
+            <div class="testi-rating" aria-label="5 stars rating">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+            <p class="testi-text">
+              "Excellent communication and exceptional attention to detail. Umar understood the exact requirements for our database system and delivered an optimized, reliable solution."
+            </p>
+            <div class="testi-author-info">
+              <div class="author-avatar"><i class="fas fa-user"></i></div>
+              <div>
+                <h4 class="author-name">Happy Client</h4>
+                <span class="author-title">Database & Management System</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card glass-card reveal-on-scroll" style="transition-delay: 0.24s;">
+            <div class="testi-rating" aria-label="5 stars rating">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+            <p class="testi-text">
+              "Creates clean, responsive, and genuinely user-friendly applications. The final deliverable was intuitive, fast, and exceeded our initial expectations."
+            </p>
+            <div class="testi-author-info">
+              <div class="author-avatar"><i class="fas fa-user"></i></div>
+              <div>
+                <h4 class="author-name">Valued Client</h4>
+                <span class="author-title">Frontend Engineering Deliverable</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================================================
+         CONTACT SECTION
+    ================================================ -->
+    <section id="contact" class="section-padding bg-alt" aria-label="Contact Muhammad Umar">
+      <div class="section-container">
+        
+        <div class="section-header reveal-on-scroll">
+          <span class="section-eyebrow"><i class="fas fa-paper-plane"></i> Get In Touch</span>
+          <h2 class="section-heading">Let's Build Something <span class="gradient-text">Exceptional</span></h2>
+          <p class="section-subheading">Have an opportunity, project collaboration, or inquiry? Feel free to reach out directly.</p>
+        </div>
+
+        <div class="contact-grid">
+          
+          <!-- Contact Details Cards -->
+          <div class="contact-info-column reveal-on-scroll">
+            <div class="glass-card contact-info-card">
+              <h3 class="contact-card-title">Direct Channels</h3>
+              <p class="contact-card-intro">
+                I am actively seeking software engineering internships, freelance projects, and full-stack development roles.
+              </p>
+
+              <div class="contact-channels-list">
+                
+                <!-- Email Channel -->
+                <div class="contact-channel-item">
+                  <div class="channel-icon"><i class="fas fa-envelope"></i></div>
+                  <div class="channel-content">
+                    <span class="channel-label">Email Address</span>
+                    <a href="mailto:umaramir18747@gmail.com" class="channel-value">umaramir18747@gmail.com</a>
+                  </div>
+                  <button class="channel-copy-btn" onclick="copyToClipboard('umaramir18747@gmail.com', 'Email copied!')" aria-label="Copy Email" title="Copy Email">
+                    <i class="fas fa-copy"></i>
+                  </button>
+                </div>
+
+                <!-- Phone Channel -->
+                <div class="contact-channel-item">
+                  <div class="channel-icon"><i class="fas fa-phone"></i></div>
+                  <div class="channel-content">
+                    <span class="channel-label">Phone & WhatsApp</span>
+                    <a href="tel:+923061874711" class="channel-value">+92 306 1874711</a>
+                  </div>
+                  <button class="channel-copy-btn" onclick="copyToClipboard('+923061874711', 'Phone copied!')" aria-label="Copy Phone" title="Copy Phone">
+                    <i class="fas fa-copy"></i>
+                  </button>
+                </div>
+
+                <!-- Location Channel -->
+                <div class="contact-channel-item">
+                  <div class="channel-icon"><i class="fas fa-location-dot"></i></div>
+                  <div class="channel-content">
+                    <span class="channel-label">Location</span>
+                    <span class="channel-value">Faisalabad, Punjab, Pakistan</span>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Social Links Box -->
+              <div class="contact-social-box">
+                <span class="social-box-title">Connect on Socials:</span>
+                <div class="social-links-grid">
+                  <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="contact-social-pill" aria-label="GitHub">
+                    <i class="fab fa-github"></i> <span>GitHub</span>
+                  </a>
+                  <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" class="contact-social-pill" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i> <span>LinkedIn</span>
+                  </a>
+                  <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" class="contact-social-pill" aria-label="Twitter">
+                    <i class="fab fa-x-twitter"></i> <span>Twitter</span>
+                  </a>
+                  <a href="https://wa.me/923061874711" target="_blank" rel="noopener noreferrer" class="contact-social-pill" aria-label="WhatsApp">
+                    <i class="fab fa-whatsapp"></i> <span>WhatsApp</span>
+                  </a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Interactive Contact Form -->
+          <div class="contact-form-column reveal-on-scroll" style="transition-delay: 0.15s;">
+            <div class="glass-card form-card">
+              <h3 class="form-card-title"><i class="fas fa-paper-plane"></i> Send a Direct Message</h3>
+              
+              <form id="contactForm" onsubmit="handleFormSubmit(event)" novalidate>
+                
+                <div class="form-row-2">
+                  <div class="form-group">
+                    <label for="senderName" class="form-label">Your Name <span class="required">*</span></label>
+                    <div class="input-wrapper">
+                      <i class="fas fa-user input-icon"></i>
+                      <input type="text" id="senderName" class="form-input" placeholder="e.g. Alex Morgan" required autocomplete="name">
+                    </div>
+                    <span class="form-error-msg" id="nameError">Please enter your name.</span>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="senderEmail" class="form-label">Your Email <span class="required">*</span></label>
+                    <div class="input-wrapper">
+                      <i class="fas fa-envelope input-icon"></i>
+                      <input type="email" id="senderEmail" class="form-input" placeholder="e.g. alex@example.com" required autocomplete="email">
+                    </div>
+                    <span class="form-error-msg" id="emailError">Please enter a valid email address.</span>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="senderSubject" class="form-label">Subject</label>
+                  <div class="input-wrapper">
+                    <i class="fas fa-tag input-icon"></i>
+                    <input type="text" id="senderSubject" class="form-input" placeholder="e.g. Project Discussion / Job Opportunity">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="senderMessage" class="form-label">Message <span class="required">*</span></label>
+                  <div class="input-wrapper textarea-wrapper">
+                    <textarea id="senderMessage" class="form-input form-textarea" placeholder="Describe your project, timeline, or requirements..." rows="5" required></textarea>
+                  </div>
+                  <span class="form-error-msg" id="messageError">Please enter your message.</span>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block submit-btn" id="submitBtn">
+                  <span class="btn-text">Send Message</span>
+                  <i class="fas fa-paper-plane btn-icon"></i>
+                </button>
+
+                <div id="formSuccessAlert" class="form-alert success-alert" style="display: none;">
+                  <i class="fas fa-circle-check"></i>
+                  <span>Thank you! Your message has been prepared and sent successfully.</span>
+                </div>
+
+              </form>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ================================================
+       FOOTER
+  ================================================ -->
+  <footer class="site-footer" aria-label="Footer">
+    <div class="section-container footer-container">
+      
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="#hero" class="brand-logo footer-logo">
+            <span class="logo-bracket">&lt;</span>
+            <span class="logo-text">MU</span>
+            <span class="logo-dot">.</span>
+            <span class="logo-bracket">/&gt;</span>
+          </a>
+          <p class="footer-tagline">
+            Muhammad Umar — Software Engineer & Full Stack Developer. Crafting precision code with passion.
+          </p>
+        </div>
+
+        <div class="footer-nav">
+          <h4 class="footer-heading">Navigation</h4>
+          <ul class="footer-links-list">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#journey">Journey</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-contact-summary">
+          <h4 class="footer-heading">Get in Touch</h4>
+          <p class="footer-contact-line"><i class="fas fa-envelope"></i> umaramir18747@gmail.com</p>
+          <p class="footer-contact-line"><i class="fas fa-phone"></i> +92 306 1874711</p>
+          <p class="footer-contact-line"><i class="fas fa-location-dot"></i> Faisalabad, Pakistan</p>
         </div>
       </div>
-    </div>
-  </div>
-</section>
 
-<!-- TESTIMONIALS -->
-<section id="testimonials">
-  <div class="sec-label rv">What They Say</div>
-  <h2 class="sec-title rv">Client <span class="hollow">Reviews</span></h2>
-  <div class="testi-grid">
-    <div class="testi-card rv">
-      <div class="qmark">"</div>
-      <p>Professional, dedicated, and always delivers high-quality work on time. Working with Umar was a seamless experience from start to finish.</p>
-      <div class="testi-auth">— Satisfied Client</div>
-    </div>
-    <div class="testi-card rv" style="transition-delay:.12s">
-      <div class="qmark">"</div>
-      <p>Excellent communication and attention to detail. Umar understood exactly what we needed and executed with precision and creativity.</p>
-      <div class="testi-auth">— Happy Client</div>
-    </div>
-    <div class="testi-card rv" style="transition-delay:.24s">
-      <div class="qmark">"</div>
-      <p>Creates clean, responsive, and user-friendly applications. The final product exceeded our expectations — would absolutely recommend.</p>
-      <div class="testi-auth">— Valued Client</div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="contact-grid">
-    <div class="ci rv">
-      <div class="sec-label">Get In Touch</div>
-      <h2>Let's Build <span>Something</span> Amazing</h2>
-      <p>Have a project in mind or looking for a developer? I'm always excited to discuss new ideas, collaborations, and opportunities.</p>
-      <div class="ci-details">
-        <div class="ci-row"><i class="fas fa-envelope"></i> umaramir18747@gmail.com</div>
-        <div class="ci-row"><i class="fas fa-phone"></i> +92 306 1874711</div>
-        <div class="ci-row"><i class="fas fa-map-marker-alt"></i> Faisalabad, Punjab, Pakistan</div>
+      <div class="footer-bottom">
+        <div class="footer-copyright">
+          &copy; <span id="currentYear">2026</span> Muhammad Umar. All rights reserved. Built with pure HTML5, CSS3 & JavaScript.
+        </div>
+        <div class="footer-social-links">
+          <a href="https://github.com/" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+          <a href="https://wa.me/923061874711" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
       </div>
-      <div class="socials">
-        <a href="https://github.com/" target="_blank" rel="noopener" class="soc"><i class="fab fa-github"></i></a>
-        <a href="https://linkedin.com/" target="_blank" rel="noopener" class="soc"><i class="fab fa-linkedin-in"></i></a>
-        <a href="https://twitter.com/" target="_blank" rel="noopener" class="soc"><i class="fab fa-twitter"></i></a>
-        <a href="https://wa.me/923061874711" target="_blank" rel="noopener" class="soc"><i class="fab fa-whatsapp"></i></a>
+
+    </div>
+  </footer>
+
+  <!-- FLOATING BACK TO TOP BUTTON -->
+  <button class="back-to-top-btn" id="backToTopBtn" onclick="scrollToTop()" aria-label="Back to top" title="Back to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <!-- ================================================
+       PROJECT DETAILS MODAL DIALOG
+  ================================================ -->
+  <dialog id="projectModal" class="project-modal" aria-labelledby="modalTitle">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-header-meta">
+          <span class="modal-tag" id="modalCategory">Full Stack</span>
+          <h3 class="modal-title" id="modalTitle">Project Title</h3>
+        </div>
+        <button class="modal-close-btn" onclick="closeProjectModal()" aria-label="Close project modal">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <p class="modal-description" id="modalDescription">Detailed description of the project.</p>
+        
+        <div class="modal-section">
+          <h4 class="modal-subheading"><i class="fas fa-star"></i> Key Features & Highlights</h4>
+          <ul class="modal-feature-list" id="modalFeatures">
+            <!-- Populated via JS -->
+          </ul>
+        </div>
+
+        <div class="modal-section">
+          <h4 class="modal-subheading"><i class="fas fa-code"></i> Technologies Employed</h4>
+          <div class="modal-tech-pills" id="modalTechPills">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary modal-github-link" id="modalGithubLink">
+          <i class="fab fa-github"></i> <span>View Code on GitHub</span>
+        </a>
+        <button class="btn btn-primary" onclick="closeProjectModal()">
+          <span>Close Details</span>
+        </button>
       </div>
     </div>
-    <div class="cf rv" style="transition-delay:.2s">
-      <div class="frow">
-        <input type="text"  class="fi" placeholder="Full Name">
-        <input type="email" class="fi" placeholder="Email Address">
-      </div>
-      <input type="text" class="fi" placeholder="Subject">
-      <textarea class="fi" placeholder="Tell me about your project..."></textarea>
-      <button class="fsub" onclick="sendMsg(this)">
-        <i class="fas fa-paper-plane"></i> Send Message
-      </button>
-    </div>
-  </div>
-</section>
+  </dialog>
 
-<!-- FOOTER -->
-<footer>
-  <div class="foot-logo"><span class="r">MU</span> / Muhammad Umar</div>
-  <div class="foot-copy">© 2026 Muhammad Umar. All Rights Reserved.</div>
-  <div class="foot-links">
-    <a href="#about">About</a>
-    <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
-  </div>
-  <div class="foot-socials">
-    <a href="https://github.com/" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
-    <a href="https://linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-    <a href="https://twitter.com/" target="_blank" rel="noopener" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-    <a href="https://wa.me/923061874711" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-  </div>
-</footer>
-
-<script src="script.js"></script>
+  <!-- MAIN SCRIPT -->
+  <script src="script.js"></script>
 </body>
 </html>
